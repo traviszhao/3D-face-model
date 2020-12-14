@@ -222,6 +222,31 @@ def to_image(vertices, h, w, is_perspective = False):
     image_vertices[:,1] = h - image_vertices[:,1] - 1
     return image_vertices
 
+def partial_reshape(vertices,x_, x_end, y_,y_end,x_scale,y_scale,h,w):
+    ''' reshape part of the image vertices
+    Args:
+        vertices: [nver, 3]
+        x_, x_end, y_, y_end: float, indicating the rectangular region to be reshaped
+        x_scale: the scale parameter for the image to be reshaped on x-direction
+        y_scale: ... y-direction
+    Returns:
+        image_vertices: [nver, 3]  
+    '''
+    #the part to be reshaped exceeds the original image size
+    if (x_end-x_)*x_scale>1 or (y_end-y_)*y_scale>1:
+        exit(0)
+    image_vertices = vertices.copy()
+    #center of the region to be reshaped
+    x_center = int((x_+x_end)/2)
+    y_center = int((y_+y_end)/2)
+    #half of the width and height of the region
+    x_len = int((x_center-x)*w)
+    y_len = int((y_center-y)*h)
+    for i in range(image_vertices.shape[0]):
+        if image_vertices[i,0] in range(x_center-x_len,x_center+x_len) and image_vertices[i,1] in range(y_center-y_len,y_center+y_len):
+            image_vertices[i,0] = int((image_vertices[i,0]-x_center)*x_scale+x_center)
+            image_vertices[i,1] = int((image_vertices[i,1]-y_center)*y_scale+y_center)
+    return image_vertices
 
 #### -------------------------------------------2. estimate transform matrix from correspondences.
 def estimate_affine_matrix_3d23d(X, Y):
