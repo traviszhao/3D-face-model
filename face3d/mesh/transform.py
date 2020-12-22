@@ -242,9 +242,9 @@ def partial_reshape(vertices,x_, x_end, y_,y_end, z_, z_end,x_scale,y_scale, z_s
     y_center = int((y_+y_end)/2)
     z_center = int((z_+z_end)/2)
     #half of the width and height of the region
-    x_len = int((x_center-x)*w)
-    y_len = int((y_center-y)*h)
-    z_len = int((y_center-y)*i)
+    x_len = int((x_center-x_)*w)
+    y_len = int((y_center-y_)*h)
+    z_len = int((z_center-z_)*i)
     for i in range(image_vertices.shape[0]):
         if image_vertices[i,0] in range(x_center-x_len,x_center+x_len) and image_vertices[i,1] in range(y_center-y_len,y_center+y_len) and image_vertices[i,2] in range(z_center-z_len,z_center+z_len):
             image_vertices[i,0] = int((image_vertices[i,0]-x_center)*x_scale+x_center)
