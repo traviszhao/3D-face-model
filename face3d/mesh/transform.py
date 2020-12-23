@@ -10,7 +10,7 @@ Mail: yaofeng1995@gmail.com
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-
+import sys
 import numpy as np
 import math
 from math import cos, sin
@@ -234,8 +234,10 @@ def partial_reshape(vertices,x_, x_end, y_,y_end, z_, z_end,x_scale,y_scale, z_s
         image_vertices:   
     '''
     #the part to be reshaped exceeds the original image size
+    if x_scale==0 or y_scale==0 or z_scale==0:
+        sys.exit(0)
     if (x_end-x_)*x_scale>1 or (y_end-y_)*y_scale>1 or (z_end-z_)*z_scale>1:
-        exit(0)
+        sys.exit(0)
     image_vertices = vertices.copy()
     #center of the region to be reshaped
     x_center = int((x_+x_end)/2)
