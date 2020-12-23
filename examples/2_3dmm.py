@@ -42,13 +42,16 @@ h = w = i=256; c = 3
 image_vertices = mesh.transform.to_image(projected_vertices, h, w)
 image = mesh.render.render_colors(image_vertices, bfm.triangles, colors, h, w)
 
-# -------------------- Back:  2D image points and corresponding 3D vertex indices-->  parameters(pose, shape, expression) ------
-## only use 68 key points to fit
+#input the parameters from data.txt
 with open("data.txt","r") as f:
     data = f.readlines()
     for i in range(len(data)):
         data[i] = float(data[i])
     [x_, x_end, y_,y_end, z_, z_end,x_scale,y_scale, z_scale] =data
+
+# -------------------- Back:  2D image points and corresponding 3D vertex indices-->  parameters(pose, shape, expression) ------
+## only use 68 key points to fit
+
     
 projected_vertices = mesh.transform.partial_reshape(projected_vertices,x_, x_end, y_,y_end, z_, z_end,x_scale,y_scale, z_scale,h,w,i)
 x = projected_vertices[bfm.kpt_ind, :2] # 2d keypoint, which can be detected from image
