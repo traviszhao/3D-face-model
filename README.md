@@ -25,6 +25,7 @@ y_scale: float, positive, indicating the scaling factor on y_axis
 z_scale: float, positive, indicating the scaling factor on z_axis
 ```
 Each line should only containly one int or float.
+The chosen region should not exceed the space after transition.
 
 The following is from Yadira F's building process, no extra building is necessary for our project.
 # How to build
