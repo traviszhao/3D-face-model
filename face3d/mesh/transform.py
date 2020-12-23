@@ -236,7 +236,7 @@ def partial_reshape(vertices,x_, x_end, y_,y_end, z_, z_end,x_scale,y_scale, z_s
     #the part to be reshaped exceeds the original image size
     if x_ not in range(0,1) or x_end not in range(0,1) or y_ not in range(0,1) or y_end not in range(0,1) or z_ not in range(0,1) or z_end not in range(0,1):
         sys.exit(0)
-    if x_scale==0 or y_scale==0 or z_scale==0:
+    if x_scale<=0 or y_scale<=0 or z_scale<=0:
         sys.exit(0)
     if (x_end-x_)*x_scale>1 or (y_end-y_)*y_scale>1 or (z_end-z_)*z_scale>1:
         sys.exit(0)
