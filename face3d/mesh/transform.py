@@ -254,8 +254,20 @@ def partial_reshape(vertices,x_, x_end, y_,y_end, z_, z_end,x_scale,y_scale, z_s
             image_vertices[i,0] = int((image_vertices[i,0]-x_center)*x_scale+x_center)
             image_vertices[i,1] = int((image_vertices[i,1]-y_center)*y_scale+y_center)
             image_vertices[i,2] = int((image_vertices[i,2]-z_center)*z_scale+z_center)
+        else:
+            image_vertices[i,0] = int((image_vertices[i,0]-x_center)*x_scale+x_center)
+            image_vertices[i,1] = int((image_vertices[i,1]-y_center)*y_scale+y_center)
+            image_vertices[i,2] = int((image_vertices[i,2]-z_center)*z_scale+z_center)
     return image_vertices
-
+def fit(a,center,len,scale,s):
+    center = center*s
+    if a in range(center-len,center+len):
+        return a
+    else:
+        if a > center:
+            a-center-len:w-a
+            a = (w-(center+len*scale))/(w-(center+len))*(a-center-len)
+        
 #### -------------------------------------------2. estimate transform matrix from correspondences.
 def estimate_affine_matrix_3d23d(X, Y):
     ''' Using least-squares solution 
