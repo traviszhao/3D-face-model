@@ -1,21 +1,27 @@
-# face3d: Python tools for processing 3D face
+# 3D-face-model: Realization of aesthetic effects on 3D face models
 
 ## Introduction
 
-This project implements some basic functions related to 3D faces.
+  This project is for CMPUT 414 class project in University of Alberta.
+  It's extended based on Yadira F's code, you can find it at https://github.com/YadiraF/face3d.
+  My purpose was to resize part of the input face image to achieve aesthetic effects. I focused mainly on the 3D-face-model/examples/2_3dmm.py/ and 3D-face-model/face3d/mesh/transform.py/. Two new functions, partial_reshape and fit, are introduced in transform.py which translates the points in the mesh and hence resize the facial part. Details can be found in citations in the code.
+  Also, a file data.txt is provided and you can type in the parameters taken by the partial reshape function there for convinient use.
+The format should strictly follow
+```text
+x_:      float, in range[0,1], indicating the start position of the region on x_axis
+x_end:   float, in range[0,1], indicating the end position of the region on x_axis, x_end > x_
+y_:      float, in range[0,1], indicating the start position of the region on y_axis
+y_end:   float, in range[0,1], indicating the end position of the region on y_axis, y_end > y_
+z_:      float, in range[0,1], indicating the start position of the region on z_axis
+z_end:   float, in range[0,1], indicating the end position of the region on z_axis, z_end > z_
+x_scale: float, positive, indicating the scaling factor on x_axis
+y_scale: float, positive, indicating the scaling factor on y_axis
+z_scale: float, positive, indicating the scaling factor on z_axis
+```
+Each line should only containly one int or float.
 
-You can use this to process mesh data, generate 3D faces from morphable model, reconstruct 3D face with a single image and key points as inputs, render faces with difference lightings(for more, please see examples).
 
-In the beginning, I wrote this project for learning 3D face reconstruction and for personal research use, so all the codes are written in python(numpy). However, some functions(eg. rasterization) can not use vectorization to optimize, writing them in python is too slow to use, then I choose to write these core parts in c++(without any other big libraries, such as opencv, eigen) and compile them with Cython for python use. 
-So the final version is very lightweight and fast.
-
-In addition, the numpy version is also retained, considering that beginners can focus on algorithms themselves in python and researches can modify and verify their ideas quickly. I also try my best to add references/formulas in each function, so that you can learn basic knowledge and understand the codes. 
-
-For more information and researches related to 3D faces, please see [3D face papers](https://github.com/YadiraF/face3d/blob/master/3D%20Face%20Papers.md).
-
-Enjoy it ^_^ 
-
-
+# How to build
 
 ## Structure
 
@@ -39,7 +45,6 @@ morphable_model/
 |  fit.py                # estimate shape&expression parameters. 3dmm fitting.
 |  load.py               # load 3dmm data
 ```
-
 
 
 ## Examples:
@@ -144,8 +149,5 @@ morphable_model/
 
 
 
-## Changelog
 
-* 2018/10/08 change structure. add comments. add introduction. add paper collections. 
-* 2018/07/15 first release
 
