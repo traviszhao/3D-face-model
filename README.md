@@ -2,10 +2,16 @@
 
 ## Introduction
 
-  This project is for CMPUT 414 class project in University of Alberta.
-  It's extended based on Yadira F's code, you can find it at https://github.com/YadiraF/face3d.
-  My purpose was to resize part of the input face image to achieve aesthetic effects. I focused mainly on the 3D-face-model/examples/2_3dmm.py/ and 3D-face-model/face3d/mesh/transform.py/. Two new functions, partial_reshape and fit, are introduced in transform.py which translates the points in the mesh and hence resize the facial part. Details can be found in citations in the code.
-  Also, a file data.txt is provided and you can type in the parameters taken by the partial reshape function there for convinient use.
+This project is for CMPUT 414 class project in University of Alberta.
+
+It's extended based on Yadira F's code, you can find it at https://github.com/YadiraF/face3d.
+
+My purpose was to resize part of the input face image to achieve aesthetic effects. I focused mainly on the 3D-face-model/examples/2_3dmm.py/ and 3D-face-model/face3d/mesh/transform.py/.
+
+Two new functions, partial_reshape and fit, are introduced in transform.py which translates the points in the mesh and hence resize the facial part. Details can be found in citations in the code.
+
+Also, a file data.txt is provided and you can type in the parameters taken by the partial reshape function there for convinient use.
+
 The format should strictly follow
 ```text
 x_:      float, in range[0,1], indicating the start position of the region on x_axis
